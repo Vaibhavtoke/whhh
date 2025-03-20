@@ -1,19 +1,12 @@
 import streamlit as st
 import time
-import pyautogui
 import pywhatkit
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
 from datetime import datetime
 
 # Function to send WhatsApp messages using pywhatkit
 def send_whatsapp_message(phone_no, message, wait_time=20):
     pywhatkit.sendwhatmsg_instantly(phone_no=phone_no, message=message, wait_time=wait_time)
-    time.sleep(15)
-    pyautogui.hotkey('ctrl', 'w')  # Close tab
-    pyautogui.press('enter')  # Confirm closing tab
-    pyautogui.hotkey('ctrl', 'r')  # Refresh WhatsApp Web
+    time.sleep(wait_time)  # Wait for the message to be sent
 
 # Sidebar with company logo and title
 st.sidebar.image('company_logo.png', use_column_width=True)
@@ -92,3 +85,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
